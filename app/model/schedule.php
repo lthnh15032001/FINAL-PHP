@@ -44,12 +44,11 @@ function add_schedule($params) //CREAT
 {
     global $connection;
 
-    $sql  = "INSERT INTO `schedules` 
-            ....";
-    /*
-    ....
-    */
-    return true;
+    $sql  = "INSERT INTO `schedules` (school_year, subject_id, teacher_id, week_day, lession, notes) 
+    VALUES ('{$params['school_year']}','{$params['subject_id']}','{$params['teacher_id']}','{$params['week_day']}','{$params['lession']}','{$params['notes']}')";
+    $result = $connection->query($sql);
+
+    return $result;
 }
 
 function get_all_schedules() //READ
