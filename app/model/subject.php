@@ -27,7 +27,7 @@ function get_all_subjects() //READ
     $sql  = "SELECT * FROM subjects";
 
     $result = $connection->query($sql);
-    $row = $result->fetch_assoc();
+    $row = $result->fetch_all(MYSQLI_ASSOC);
 
     return $row;
 }
