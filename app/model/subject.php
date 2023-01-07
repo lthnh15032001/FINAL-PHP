@@ -2,19 +2,15 @@
 include_once "../common/database.php";
 // CRUD
 
-/**
- * @param $subject_name
- * @param $school_year
- * @param $subject_note
- * @param $subject_avatar
- * @return bool|mysqli_result
- */
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 function add_subject($subject_name, $school_year, $subject_note, $subject_avatar) //CREAT
 {
     global $connection;
-
-    $sql = "INSERT INTO subjects (name, avatar, description, school_year)
-VALUES ('{$subject_name}', '{$subject_avatar}', '{$subject_note}', '{$school_year}')";
+    
+    $date = date("Y-m-d H:i:s");
+    $sql = "INSERT INTO subjects (name, avatar, description, school_year, created)
+    VALUES ('{$subject_name}', '{$subject_avatar}', '{$subject_note}', '{$school_year}', '{$date}')";
 
     $result = $connection->query($sql);
     return $result;
