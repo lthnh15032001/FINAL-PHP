@@ -24,7 +24,7 @@
                         <select name="school_year" id="school_year_id" class="form-select">
                             <option selected></option>
                             <?php foreach (constant("YEAR") as $key => $value) { ?>
-                                <option><?php echo $value; ?></option>
+                                <option value=<?php echo $key ?>><?php echo $value; ?></option>
                             <?php } ?>
                         </select>
                     </div>
