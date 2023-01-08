@@ -21,7 +21,7 @@ function get_all_teachers() //READ
     $sql  = "SELECT * FROM `teachers`";
 
     $result = $connection->query($sql);
-    $row = $result->fetch_all(MYSQLI_ASSOC);
+    $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $row;
 }
 

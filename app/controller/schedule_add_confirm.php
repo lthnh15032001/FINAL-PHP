@@ -5,6 +5,8 @@ include_once "../model/teacher.php";
 include_once "../model/subject.php";
 include_once '../common/database.php';
 
+
+
 if (isset($_POST['confirm_add'])) {
     $params = [
         'school_year' => $_POST['school_year'],

@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    
     <div class="container">
         <h1 class="text-center mt-5">Sửa thời khóa biểu</h1>
         <form action="" method="post" class="mt-5 mb-5 border border-primary rounded p-5">
@@ -76,6 +77,7 @@
                                     </label>
                                 </div>";
                     }
+                    
                     ?>
 
                 </div>
