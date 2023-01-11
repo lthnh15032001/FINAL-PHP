@@ -39,7 +39,7 @@ function get_subject_name_by_id($id) //READ
     $sql  = "SELECT name FROM subjects WHERE id = '$id'";
 
     $result = $connection->query($sql);
-    $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $row = mysqli_fetch_assoc($result);
 
     return $row;
 }

@@ -59,15 +59,13 @@
                 <div class="col-sm-10 d-flex">
                     <?php
 
-                    $lessionArr = explode(',', $_SESSION['lession']);
+                    $lessionArr = isset($_SESSION['lession']) ? $_SESSION['lession'] : explode(",", $schedule['lession']);
                     foreach ($lessionArr as  $value) {
                     ?>
-                        <div class='form-check'>
 
-                            <label class='form-check-label' for='lession<?php echo $value; ?>'>
-                                Tiết <?php echo $value; ?>
-                            </label>
-                        </div>
+                        <p class='me-4' for='lession<?php echo $value; ?>'>
+                            Tiết <?php echo $value; ?>
+                        </p>
                     <?php
                     }
                     ?>

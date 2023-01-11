@@ -33,8 +33,10 @@ include("../common/define.php");
                         </option>
                         <?php
                         $school_year = constant('YEAR');
+                        $schedule_schoolyear = (isset($_SESSION['school_year'])) ? $_SESSION['school_year'] : $schedule['school_year'];
+
                         foreach ($school_year as $key => $value) {
-                            $selected = ($value == $schedule['school_year'] ? "selected" : "");
+                            $selected = ($value == $schedule_schoolyear ? "selected" : "");
                         ?>
                             <option <?php echo $selected; ?> value="<?= $value ?>"><?= $value ?></option>
                         <?php
@@ -57,9 +59,10 @@ include("../common/define.php");
                         </option>
 
                         <?php
+                        $schedule_subject = (isset($_SESSION['subject_id'])) ? $_SESSION['subject_id'] : $schedule['subject_id'];
 
                         foreach ($subjects as $subject) {
-                            if ($subject["id"] == $schedule["subject_id"]) {
+                            if ($subject["id"] == $schedule_subject) {
 
                                 echo '<option selected value="' . $subject["id"] . '">' . $subject["name"] . '</option>';
                             } else {
@@ -83,8 +86,9 @@ include("../common/define.php");
                         </option>
 
                         <?php
+                        $schedule_teacher = (isset($_SESSION['teacher_id'])) ? $_SESSION['teacher_id'] : $schedule['teacher_id'];
                         foreach ($teachers as $teacher) {
-                            if ($teacher["id"] == $schedule["teacher_id"]) {
+                            if ($teacher["id"] == $schedule_teacher) {
 
                                 echo '<option selected value="' . $teacher["id"] . '">' . $teacher["name"] . '</option>';
                             } else {
@@ -110,8 +114,9 @@ include("../common/define.php");
                         </option>
                         <?php
                         $weekday = constant('WEEKDAY');
+                        $schedule_weekday = isset($_SESSION['week_day']) ? $_SESSION['week_day'] : $schedule['week_day'];
                         foreach ($weekday as $key => $value) {
-                            $selected = ($value == $schedule['week_day'] ? "selected" : "");
+                            $selected = ($value == $schedule_weekday ? "selected" : "");
                         ?>
                             <option <?php echo $selected; ?> value="<?= $value ?>"><?= $value ?></option>
                         <?php
@@ -127,37 +132,38 @@ include("../common/define.php");
 
             <div class="form-group row mt-4">
                 <label class="col-sm-2" for="lession">Tiết</label>
-                <div class="col-sm-10 d-flex justify-content-between">
-                    <?php
-                    $lession = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
-                    if (isset($_SESSION["lession"])) {
-                        $lessionArr = explode(",", $_SESSION['lession']);
-                    } else {
-                        $lessionArr = explode(",", $schedule['lession']);
-                    }
-                    foreach ($lession as  $value) {
-                        $checked = (in_array($value, $lessionArr) ? "checked" : "");
-                    ?>
-                        <div class='form-check'>
-                            <input name='lession[]' class='form-check-input' type='checkbox' value='<?php echo $value; ?>' id='lession<?php echo $value; ?>' <?php echo $checked ?>>
-                            <label class='form-check-label' for='lession<?php echo $value; ?>'>
-                                Tiết <?php echo $value; ?>
-                            </label>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                    <span class="text-danger font-weight-bold">
-                        <?php echo $errors['lession'];
+                <div class="col-sm-10 d-flex justify-content-between flex-column">
+                    <div class="d-flex">
+                        <?php
+                        $lession = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10');
+                        $lessionArr = isset($_SESSION['lession']) ? $_SESSION['lession'] : explode(",", $schedule['lession']);
+
+                        foreach ($lession as  $value) {
+                            $checked = (in_array($value, $lessionArr) ? "checked" : "");
                         ?>
-                    </span>
+                            <div class='form-check me-4'>
+                                <input name='lession[]' class='form-check-input' type='checkbox' value='<?php echo $value; ?>' id='lession<?php echo $value; ?>' <?php echo $checked ?>>
+                                <label class='form-check-label' for='lession<?php echo $value; ?>'>
+                                    Tiết <?php echo $value; ?>
+                                </label>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <div>
+                        <span class="text-danger font-weight-bold">
+                            <?php echo $errors['lession'];
+                            ?>
+                        </span>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group row mt-4">
                 <label class="col-sm-2" for="notes">Chú ý</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" id="notes" name="notes" rows="5"><?php echo $schedule["notes"] ?></textarea>
+                    <textarea class="form-control" id="notes" name="notes" rows="5"><?php echo isset($_SESSION['notes']) ? $_SESSION['notes'] : $schedule["notes"] ?></textarea>
                     <span class="text-danger font-weight-bold">
                         <?php echo $errors['notes'];
                         ?>

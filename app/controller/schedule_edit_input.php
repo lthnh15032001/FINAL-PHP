@@ -61,14 +61,13 @@ if (isset($_POST['confirm_edit'])) {
     } else {
         $notes = $_POST['notes'];
     }
-
+    $_SESSION['school_year'] = $_POST['school_year'];
+    $_SESSION['subject_id'] = $_POST['subject_id'];
+    $_SESSION['teacher_id'] = $_POST['teacher_id'];
+    $_SESSION['week_day'] = $_POST['week_day'];
+    $_SESSION['lession'] = isset($_POST['lession']) ? $_POST['lession'] : array();
+    $_SESSION['notes'] = $_POST['notes'];
     if (!empty($_POST['school_year']) && !empty($_POST['subject_id']) && !empty($_POST['teacher_id']) && !empty($_POST['week_day']) && !empty($_POST['lession']) && !empty($_POST['notes'])) {
-        $_SESSION['school_year'] = $_POST['school_year'];
-        $_SESSION['subject_id'] = $_POST['subject_id'];
-        $_SESSION['teacher_id'] = $_POST['teacher_id'];
-        $_SESSION['week_day'] = $_POST['week_day'];
-        $_SESSION['lession'] = implode(',', $_POST["lession"]);
-        $_SESSION['notes'] = $_POST['notes'];
 
         include_once "../views/schedule_edit_confirm.php";
     } else {

@@ -15,7 +15,7 @@ if (isset($_POST["edit_schedule"])) {
     $subject_id = $_SESSION['subject_id'];
     $teacher_id = $_SESSION['teacher_id'];
     $week_day = $_SESSION['week_day'];
-    $lession = $_SESSION['lession'];
+    $lession = implode(',', $_SESSION['lession']);
 
     $notes = $_SESSION['notes'];
     if (edit_schedule($schedule_id, $school_year, $subject_id, $teacher_id, $week_day, $lession, $notes)) {
